@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.hilfritz.samplekotlin.api.pojo.PlaceItem"/>
+        <variable
+            name="presenter"
+            type="com.hilfritz.samplekotlin.placelist.PlacesPresenter"/>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->presenter.onListItemClick(vm)}"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/image"
+            />
+        <!--
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/image"
+            app:loadImage="@{vm.pictureUrl}"
+            />
+            -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/image"
+            android:text="@{vm.name}"
+            android:textColor="#ffffff"
+            android:id="@+id/name"
+            android:padding="10dp"
+            android:background="#bb000000"
+            tools:text="hi there"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image"
+            android:layout_above="@id/name"
+            android:id="@+id/selected_indicator"
+            android:background="#99000000"
+            android:visibility="@{vm.viewVisibility()}"
+            android:onClick="@{()->presenter.onListItemClick(vm)}"
+            />
+
+    </RelativeLayout>
+</layout>
