@@ -14,14 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ui.main.MainActivity"></activity>
         <activity
-            android:name=".LoginActivityKotlin"
+            android:name="com.hilfritz.samplekotlin.ui.login.LoginActivityKotlin"
             android:label="@string/title_activity_login_kotlin">
 
         </activity>
         <activity
-            android:name=".placelist.PlacesActivity"
+            android:name="com.hilfritz.samplekotlin.ui.placelist.PlacesActivity"
             android:label="@string/title_activity_places"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
