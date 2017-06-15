@@ -1,7 +1,10 @@
-package com.hilfritz.samplekotlin.placelist
+package com.hilfritz.samplekotlin.ui.placelist
 
 import android.content.Context
+import android.os.Bundle
 import android.widget.Toast
+import com.hilfritz.samplekotlin.BasePresenter
+import com.hilfritz.samplekotlin.BaseView
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,24 +13,28 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Created by Hilfritz Camallere on 24/5/17.
- * PC name herdmacbook1
  */
-class PlacesPresenterImpl constructor(var view: PlacesView, var context: Context) :PlacesPresenter{
+class PlacesPresenterImpl
+    constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?)
+    : BasePresenter(), PlacesPresenterInterface {
 
+
+    override fun init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
+
+    }
+
+    override fun destroy() {
+
+    }
 
     override fun populate() {
         callPlacesApi()
     }
 
-    override fun init(view: PlacesView, context: Context) {
-
-    }
 
     override fun callPlacesApi() {
         view.showLoading()
 
-
-        //view.showFullScreenMessage("crap you")
         Observable
                 .just("one","two","three")
                 .delay(1000, TimeUnit.MILLISECONDS)
@@ -37,10 +44,8 @@ class PlacesPresenterImpl constructor(var view: PlacesView, var context: Context
                 .subscribe { t: String? ->
                     view.hideLoading()
                     Toast.makeText(context, t,Toast.LENGTH_SHORT).show()
-
                 }
                 //.subscribe ({ t: String? -> Toast.makeText(context, t,Toast.LENGTH_SHORT).show() })
-
     }
 
     override fun onListItemClick(item: PlaceItem) {

@@ -1,8 +1,7 @@
-package com.hilfritz.samplekotlin.placelist.helper
+package com.hilfritz.samplekotlin.ui.placelist.helper
 
 /**
  * Created by Hilfritz Camallere on 25/5/17.
- * PC name herdmacbook1
  */
 class PlacesAdapter{
 

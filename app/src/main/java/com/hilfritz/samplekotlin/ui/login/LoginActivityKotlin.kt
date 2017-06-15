@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin
+package com.hilfritz.samplekotlin.ui.login
 
 import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
@@ -21,7 +21,8 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.hilfritz.samplekotlin.placelist.PlacesActivity
+import com.hilfritz.samplekotlin.R
+import com.hilfritz.samplekotlin.ui.placelist.PlacesActivity
 import java.util.*
 
 /**
@@ -281,7 +282,7 @@ class LoginActivityKotlin : AppCompatActivity(), LoaderCallbacks<Cursor> {
             if (success!!) {
                 Toast.makeText(this@LoginActivityKotlin, R.string.success_login, Toast.LENGTH_SHORT).show()
                 //finish()
-                startActivity(Intent(this@LoginActivityKotlin,PlacesActivity::class.java))
+                startActivity(Intent(this@LoginActivityKotlin, PlacesActivity::class.java))
             } else {
                 mPasswordView!!.error = getString(R.string.error_incorrect_password)
                 mPasswordView!!.requestFocus()

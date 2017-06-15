@@ -11,6 +11,7 @@ abstract class BasePresenter: BasePresenterInterface{
         PRESENTER_NEW,
         PRESENTER_REUSE
     }
+
     override fun populate() {
         populateCounter++;
         if (populateCounter>1){
@@ -18,16 +19,14 @@ abstract class BasePresenter: BasePresenterInterface{
         }
     }
 
-
-
     override fun destroy(){
         populateCounter = 0;
     }
 
     fun isFirstTimeLoad():Boolean {
-        if (populateCounter==1){
-            return true
+        if (populateCounter>0){
+            return false
         }
-        return false
+        return true
     }
 }
