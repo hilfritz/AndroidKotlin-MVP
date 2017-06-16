@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.placelist
+package com.hilfritz.samplekotlin.ui.placelist.interfaces
 
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 
@@ -7,6 +7,6 @@ import com.hilfritz.samplekotlin.api.pojo.PlaceItem
  */
 interface PlacesPresenterInterface {
     fun callPlacesApi()
-    fun onListItemClick(item: PlaceItem)
+    fun onListItemClick(item: com.hilfritz.samplekotlin.api.pojo.PlaceItem)
 
 }

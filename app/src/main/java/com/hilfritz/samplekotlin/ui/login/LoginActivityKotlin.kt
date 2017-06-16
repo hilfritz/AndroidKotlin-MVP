@@ -22,7 +22,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import com.hilfritz.samplekotlin.R
-import com.hilfritz.samplekotlin.ui.placelist.PlacesActivity
+import com.hilfritz.samplekotlin.ui.placelist.view.PlacesActivity
 import java.util.*
 
 /**

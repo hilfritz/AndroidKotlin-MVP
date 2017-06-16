@@ -5,7 +5,7 @@ import android.view.View
 /**
  * Created by Hilfritz Camallere on 24/5/17.
  */
-class PlaceItem (val id:Int=0 ,val name:String="",val pictureUrl:String="",val isSelected:Int=PlaceItem.SELECTION.NOT_SELECTED){
+data class PlaceItem (val id:Int=0 ,val name:String="",val pictureUrl:String="",val isSelected:Int=PlaceItem.SELECTION.NOT_SELECTED){
 
     companion object SELECTION {
         val IS_SELECTED = 1;

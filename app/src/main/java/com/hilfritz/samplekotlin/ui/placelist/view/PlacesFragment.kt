@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.placelist
+package com.hilfritz.samplekotlin.ui.placelist.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,18 +10,18 @@ import android.widget.TextView
 import android.widget.Toast
 import com.hilfritz.samplekotlin.BaseFragment
 import com.hilfritz.samplekotlin.R
+import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
+import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlacesFragment : BaseFragment(), PlacesView{
+class PlacesFragment : BaseFragment(), PlacesView {
 
-    lateinit var list:RecyclerView
-    lateinit var loading:View
+    lateinit var list: RecyclerView
+    lateinit var loading: View
     lateinit var fullScreenMessage: TextView
-    lateinit var presenter:PlacesPresenterImpl
-
-
+    lateinit var presenter: PlacesPresenterImpl
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,8 +31,12 @@ class PlacesFragment : BaseFragment(), PlacesView{
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //VIEW INITIALIZATIONS
         findViews()
         init()
+
+        //PRESENTER INITIALIZATIONS
+        presenter.init(activity,savedInstanceState?: Bundle(),this)
         presenter.populate()
     }
 
