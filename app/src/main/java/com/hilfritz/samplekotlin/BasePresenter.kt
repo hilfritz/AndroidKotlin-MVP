@@ -12,18 +12,18 @@ abstract class BasePresenter: BasePresenterInterface{
         PRESENTER_REUSE
     }
 
-    override fun populate() {
+    override fun __populate() {
         populateCounter++;
         if (populateCounter>1){
             presenterCreation = PRESENTER_CREATION.PRESENTER_REUSE;
         }
     }
 
-    override fun destroy(){
+    override fun __destroy(){
         populateCounter = 0;
     }
 
-    fun isFirstTimeLoad():Boolean {
+    fun __isFirstTimeLoad():Boolean {
         if (populateCounter>0){
             return false
         }

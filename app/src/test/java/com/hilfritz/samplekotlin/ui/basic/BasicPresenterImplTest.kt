@@ -27,19 +27,19 @@ class BasicPresenterImplTest : AndroidTest(){
     @Test
     fun isFirstLoadTest(){
         isFirstLoadTestInit()
-        Assert.assertTrue(presenter.isFirstTimeLoad())
-        presenter.populate()
+        Assert.assertTrue(presenter.__isFirstTimeLoad())
+        presenter.__populate()
 
-        Assert.assertTrue(presenter.isFirstTimeLoad()==false)
-        presenter.destroy()
-        Assert.assertTrue(presenter.isFirstTimeLoad())
+        Assert.assertTrue(presenter.__isFirstTimeLoad()==false)
+        presenter.__destroy()
+        Assert.assertTrue(presenter.__isFirstTimeLoad())
 
-        presenter.populate()
-        Assert.assertTrue(presenter.isFirstTimeLoad()==false)
-        presenter.populate()
-        presenter.populate()
-        presenter.populate()
+        presenter.__populate()
+        Assert.assertTrue(presenter.__isFirstTimeLoad()==false)
+        presenter.__populate()
+        presenter.__populate()
+        presenter.__populate()
 
-        Assert.assertTrue(presenter.isFirstTimeLoad()==false)
+        Assert.assertTrue(presenter.__isFirstTimeLoad()==false)
     }
 }

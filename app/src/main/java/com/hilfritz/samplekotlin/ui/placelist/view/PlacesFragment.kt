@@ -32,32 +32,32 @@ class PlacesFragment : BaseFragment(), PlacesView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //VIEW INITIALIZATIONS
-        findViews()
-        init()
+        __findViews()
+        __init()
 
         //PRESENTER INITIALIZATIONS
-        presenter.init(activity,savedInstanceState?: Bundle(),this)
-        presenter.populate()
+        presenter.__init(activity,savedInstanceState?: Bundle(),this)
+        presenter.__populate()
     }
 
-    override fun showFullScreenMessage(message: String) {
+    override fun __showFullScreenMessage(message: String) {
         loading.visibility = View.GONE
         fullScreenMessage.visibility = View.VISIBLE
         list.visibility = View.GONE
         fullScreenMessage.text=message
     }
 
-    override fun showList() {
+    override fun _showList() {
         loading.visibility = View.GONE
         fullScreenMessage.visibility = View.GONE
         list.visibility = View.VISIBLE
     }
 
-    override fun showDialog(tag:String, message: String) {
+    override fun __showDialog(tag:String, message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun findViews() {
+    override fun __findViews() {
         fullScreenMessage = view!!.findViewById(R.id.fullScreenMessage) as TextView;
         loading = view!!.findViewById(R.id.loading);
         list = view!!.findViewById(R.id.recyclerView) as RecyclerView;
@@ -65,15 +65,15 @@ class PlacesFragment : BaseFragment(), PlacesView {
 
     }
 
-    override fun showLoading() {
+    override fun __showLoading() {
         loading.visibility= View.VISIBLE
     }
 
-    override fun hideLoading() {
+    override fun __hideLoading() {
         loading.visibility= View.GONE
     }
 
-    override fun init() {
+    override fun __init() {
         //INITIALIZE THE LIST
         list?.let{  //same as if (list!=null)
             list.setHasFixedSize(true)
@@ -85,7 +85,7 @@ class PlacesFragment : BaseFragment(), PlacesView {
         }
     }
 
-    override fun hideDialog(tag: String) {
+    override fun __hideDialog(tag: String) {
     }
 
 }

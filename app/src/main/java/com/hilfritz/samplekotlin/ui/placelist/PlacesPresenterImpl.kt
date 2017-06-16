@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import com.hilfritz.samplekotlin.BasePresenter
+import com.hilfritz.samplekotlin.BasePresenterInterface
 import com.hilfritz.samplekotlin.BaseView
 import com.hilfritz.samplekotlin.api.RestApiManager
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
@@ -11,6 +12,7 @@ import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import com.hilfritz.samplekotlin.util.ExceptionUtil
+import com.hilfritz.samplekotlin.util.RxJava2Util
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 
@@ -20,48 +22,50 @@ import io.reactivex.observers.DisposableObserver
  */
 class PlacesPresenterImpl
     constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?)
-    : BasePresenter(), PlacesPresenterInterface {
+    : BasePresenter(), BasePresenterInterface, PlacesPresenterInterface {
 
     lateinit var apiManager:RestApiManager
-    lateinit var placeListRequest: Disposable
+    var placeListRequest: Disposable? = null
 
 
-    override fun firstInit() {
+    override fun __firstInit() {
         apiManager = RestApiManager()
     }
 
-    override fun init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
+    override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
         this.view = view as PlacesView
-        if (isFirstTimeLoad())
-            firstInit()
+        if (__isFirstTimeLoad())
+            __firstInit()
     }
 
 
 
 
-    override fun destroy() {
+    override fun __destroy() {
         placeListRequest?.dispose()
     }
 
-    override fun populate() {
-        callPlacesApi()
+    override fun __populate() {
+        _callPlacesApi()
     }
 
 
-    override fun callPlacesApi() {
-        view.showLoading()
+    override fun _callPlacesApi() {
+        view.__showLoading()
+        //IF PREVIOUS REQUEST IS STILL RUNNING DON'T PROCEED
+        if (RxJava2Util.isProcessing(placeListRequest))
+            return;
+
 
         //CALLING THE API USING RXJAVA2
-
-
         //#1
         /*
         apiManager.getPlacesPagedSubscribable("", 0)
                 .subscribe { t: PlacesWrapper? ->
                     t.let{
                         val size = t?.place?.size
-                        view.hideLoading()
-                        view.showFullScreenMessage("Great I found " + size + " records of places")
+                        view.__hideLoading()
+                        view.__showFullScreenMessage("Great I found " + size + " records of places")
                     }
                 }
                 */
@@ -83,19 +87,19 @@ class PlacesPresenterImpl
                     override fun onNext(placesWrapper: PlacesWrapper) {
                         placesWrapper?.let {
                             val size = placesWrapper.place?.size
-                            view.hideLoading()
-                            view.showFullScreenMessage("Great I found " + size + " records of places.")
+                            view.__hideLoading()
+                            view.__showFullScreenMessage("Great I found " + size + " records of places.")
                         }
                     }
 
                     override fun onError(e: Throwable) {
                         this.dispose()
                         if (ExceptionUtil.isNoNetworkException(e)){
-                            view.hideLoading()
-                            view.showFullScreenMessage("So sad, can not connect to network to get place list.")
+                            view.__hideLoading()
+                            view.__showFullScreenMessage("So sad, can not connect to network to get place list.")
                         }else{
-                            view.hideLoading()
-                            view.showFullScreenMessage("Oops, something went wrong. ["+e.localizedMessage+"]")
+                            view.__hideLoading()
+                            view.__showFullScreenMessage("Oops, something went wrong. ["+e.localizedMessage+"]")
                         }
                     }
 
@@ -133,7 +137,7 @@ class PlacesPresenterImpl
         }
     }
 
-    override fun onListItemClick(item: PlaceItem) {
+    override fun _onListItemClick(item: PlaceItem) {
         Toast.makeText(context, item.name+" is clicked", Toast.LENGTH_SHORT).show()
     }
 

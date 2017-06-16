@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->presenter.onListItemClick(vm)}"
+        android:onClick="@{()->presenter._onListItemClick(vm)}"
         >
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             android:id="@+id/selected_indicator"
             android:background="#99000000"
             android:visibility="@{vm.viewVisibility()}"
-            android:onClick="@{()->presenter.onListItemClick(vm)}"
+            android:onClick="@{()->presenter._onListItemClick(vm)}"
             />
 
     </RelativeLayout>

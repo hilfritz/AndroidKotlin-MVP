@@ -13,14 +13,14 @@ class BasicPresenterImpl
 constructor(var view: BasicPresenterView, var context: Context, var savedInstanceState: Bundle)
     : BasePresenter(), BasicPresenterInterface
 {
-    override fun init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
+    override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
     }
 
-    override fun populate() {
-        super.populate()
+    override fun __populate() {
+        super.__populate()
     }
 
-    override fun destroy() {
-        super.destroy()
+    override fun __destroy() {
+        super.__destroy()
     }
 }

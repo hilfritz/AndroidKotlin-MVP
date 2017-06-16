@@ -67,7 +67,7 @@ class RestApiManager {
                 accessToken,
                 page
         ).subscribeOn(Schedulers.io())
-                .delay(500, TimeUnit.MILLISECONDS)
+                .delay(5000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
