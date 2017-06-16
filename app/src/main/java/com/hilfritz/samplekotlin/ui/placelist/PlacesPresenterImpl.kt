@@ -10,6 +10,10 @@ import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
+import com.hilfritz.samplekotlin.util.ExceptionUtil
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
+
 
 /**
  * Created by Hilfritz Camallere on 24/5/17.
@@ -19,6 +23,8 @@ class PlacesPresenterImpl
     : BasePresenter(), PlacesPresenterInterface {
 
     lateinit var apiManager:RestApiManager
+    lateinit var placeListRequest: Disposable
+
 
     override fun firstInit() {
         apiManager = RestApiManager()
@@ -34,7 +40,7 @@ class PlacesPresenterImpl
 
 
     override fun destroy() {
-
+        placeListRequest?.dispose()
     }
 
     override fun populate() {
@@ -45,64 +51,86 @@ class PlacesPresenterImpl
     override fun callPlacesApi() {
         view.showLoading()
 
+        //CALLING THE API USING RXJAVA2
+
+
+        //#1
         /*
-        val subscriber = object : Subscriber<PlacesWrapper>() {
-            fun onCompleted() {
-                //Timber.d("callPlaceListApi: onCompleted: ")
-                view.hideLoading()
-            }
-
-            fun onError(e: Throwable) {
-                //Timber.d("callPlaceListApi: onError: ")
-                view.hideLoading()
-                e.printStackTrace()
-                if (ExceptionUtil.isNoNetworkException(e)) {
-                    Toast.makeText(context, "No Internet connection", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context), e.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            fun onNext(placesWrapper: PlacesWrapper?) {
-                //Timber.d("callPlaceListApi: onNext: ")
-                if (placesWrapper != null) {
-                    if (placesWrapper.getPlace().size() > 0) {
-                        getPlaceList().clear()
-                        getPlaceList().addAll(placesWrapper.getPlace())
-                        view.getAdapter().notifyDataSetChanged()
+        apiManager.getPlacesPagedSubscribable("", 0)
+                .subscribe { t: PlacesWrapper? ->
+                    t.let{
+                        val size = t?.place?.size
+                        view.hideLoading()
+                        view.showFullScreenMessage("Great I found " + size + " records of places")
                     }
                 }
-            }
+                */
+        /*
+        //#2
+        val value: DisposableObserver<PlacesWrapper> = object : DisposableObserver<PlacesWrapper>() {
+            override fun onNext(str: PlacesWrapper) {}
+            override fun onError(e: Throwable) {}
+            override fun onComplete() {}
+        }
+        apiManager.getPlacesPagedSubscribable("",0)
+                .subscribe (value)
+        */
+
+        //#3
+
+        apiManager.getPlacesPagedSubscribable("",0)
+                .subscribe (object : DisposableObserver<PlacesWrapper>() {
+                    override fun onNext(placesWrapper: PlacesWrapper) {
+                        placesWrapper?.let {
+                            val size = placesWrapper.place?.size
+                            view.hideLoading()
+                            view.showFullScreenMessage("Great I found " + size + " records of places.")
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        this.dispose()
+                        if (ExceptionUtil.isNoNetworkException(e)){
+                            view.hideLoading()
+                            view.showFullScreenMessage("So sad, can not connect to network to get place list.")
+                        }else{
+                            view.hideLoading()
+                            view.showFullScreenMessage("Oops, something went wrong. ["+e.localizedMessage+"]")
+                        }
+                    }
+
+                    override fun onComplete() {
+                        this.dispose()
+                    }
+                })
+
+
+
+        /*
+        val temp: DisposableObserver<String> = object : DisposableObserver<String>() {
+            override fun onNext(str: String) {}
+            override fun onError(e: Throwable) {}
+            override fun onComplete() {}
         }
         */
 
+    }
 
-        apiManager.getPlacesPagedSubscribable("", 0)
-                .subscribe { t: PlacesWrapper? ->
-                    if (t != null) {
+    private fun _getEventCompletionObserver(): DisposableObserver<String> {
+        return object : DisposableObserver<String>() {
+            override fun onNext(taskType: String) {
+                //_log(String.format("onNext %s task", taskType))
+            }
 
-                        val size = t.place?.size
-                        //Logger.d("", size.toString()+"<<")
-                        //Toast.makeText(context, ""+ size+" records found",Toast.LENGTH_SHORT).show()
-                        view.hideLoading()
-                        view.showFullScreenMessage("Great I found "+ size+" records of places")
-                    }
-                }
+            override fun onError(e: Throwable) {
+                //_log(String.format("Dang a task timeout"))
+                //Timber.e(e, "Timeout Demo exception")
+            }
 
-        /*
-
-        Observable
-                .just("one","two","three")
-                .delay(1000, TimeUnit.MILLISECONDS)
-                .throttleWithTimeout(1000, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { t: String? ->
-                    view.hideLoading()
-                    Toast.makeText(context, t,Toast.LENGTH_SHORT).show()
-                }
-                //.subscribe ({ t: String? -> Toast.makeText(context, t,Toast.LENGTH_SHORT).show() })
-                */
+            override fun onComplete() {
+                //_log(String.format("task was completed"))
+            }
+        }
     }
 
     override fun onListItemClick(item: PlaceItem) {
