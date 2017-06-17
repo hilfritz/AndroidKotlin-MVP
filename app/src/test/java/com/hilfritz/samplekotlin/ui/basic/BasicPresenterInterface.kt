@@ -5,5 +5,5 @@ package com.hilfritz.samplekotlin.ui.basic
  *
  */
 interface BasicPresenterInterface {
-    fun populate()
+
 }

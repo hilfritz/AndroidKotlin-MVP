@@ -1,5 +1,6 @@
 package com.hilfritz.samplekotlin.api
 
+import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,6 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -16,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * see https://guides.codepath.com/android/Consuming-APIs-with-Retrofit
  */
 
-class RestApiManager {
+open class RestApiManager {
 
     var api: RestApiInterface
         internal set
@@ -63,12 +65,15 @@ class RestApiManager {
 
     fun getPlacesPagedSubscribable(accessToken: String, page: Int
     ): Observable<PlacesWrapper> {
+        return Observable.just(PlacesWrapper(Arrays.asList(PlaceItem(), PlaceItem())))
+        /*
         return api.getPlacesPagedObservable(
                 accessToken,
                 page
         ).subscribeOn(Schedulers.io())
                 .delay(5000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
+                */
     }
 
     /*

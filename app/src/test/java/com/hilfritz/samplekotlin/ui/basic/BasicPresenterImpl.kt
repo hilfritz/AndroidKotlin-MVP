@@ -13,6 +13,9 @@ class BasicPresenterImpl
 constructor(var view: BasicPresenterView, var context: Context, var savedInstanceState: Bundle)
     : BasePresenter(), BasicPresenterInterface
 {
+    override fun __firstInit() {
+    }
+
     override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?) {
     }
 

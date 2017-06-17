@@ -35,7 +35,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.github.ReactiveX:RxKotlin:2.0.3'
     /**
      * FRESCO LIBRARY
@@ -74,7 +73,7 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     testCompile "org.robolectric:robolectric:3.3.2"
-    testCompile 'org.mockito:mockito-core:2.+'
+    testCompile 'org.mockito:mockito-core:2.8.47'
     testCompile 'junit:junit:4.12'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'

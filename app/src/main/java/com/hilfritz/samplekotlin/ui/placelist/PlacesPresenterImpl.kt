@@ -53,8 +53,8 @@ class PlacesPresenterImpl
     override fun _callPlacesApi() {
         view.__showLoading()
         //IF PREVIOUS REQUEST IS STILL RUNNING DON'T PROCEED
-        if (RxJava2Util.isProcessing(placeListRequest))
-            return;
+        //if (RxJava2Util.isProcessing(placeListRequest))
+        //    return;
 
 
         //CALLING THE API USING RXJAVA2
@@ -88,12 +88,14 @@ class PlacesPresenterImpl
                         placesWrapper?.let {
                             val size = placesWrapper.place?.size
                             view.__hideLoading()
+                            view._showList()
                             view.__showFullScreenMessage("Great I found " + size + " records of places.")
+                            System.console().printf("onNext() ok")
                         }
+                        System.console().printf("onNext()")
                     }
 
                     override fun onError(e: Throwable) {
-                        this.dispose()
                         if (ExceptionUtil.isNoNetworkException(e)){
                             view.__hideLoading()
                             view.__showFullScreenMessage("So sad, can not connect to network to get place list.")
@@ -101,10 +103,13 @@ class PlacesPresenterImpl
                             view.__hideLoading()
                             view.__showFullScreenMessage("Oops, something went wrong. ["+e.localizedMessage+"]")
                         }
+                        System.console().printf("onError()")
+                        this.dispose()
                     }
 
                     override fun onComplete() {
                         this.dispose()
+                        System.console().printf("onComplete()")
                     }
                 })
 
