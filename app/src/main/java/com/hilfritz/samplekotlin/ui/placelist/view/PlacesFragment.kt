@@ -12,6 +12,7 @@ import com.hilfritz.samplekotlin.BaseFragment
 import com.hilfritz.samplekotlin.R
 import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,7 +26,7 @@ class PlacesFragment : BaseFragment(), PlacesView {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        presenter = PlacesPresenterImpl(this, activity, savedInstanceState)
+        presenter = PlacesPresenterImpl(this, activity, savedInstanceState, AndroidSchedulers.mainThread())
         return inflater!!.inflate(R.layout.fragment_places, container, false)
     }
 

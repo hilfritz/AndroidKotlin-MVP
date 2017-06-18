@@ -6,22 +6,26 @@ import android.widget.Toast
 import com.hilfritz.samplekotlin.BasePresenter
 import com.hilfritz.samplekotlin.BasePresenterInterface
 import com.hilfritz.samplekotlin.BaseView
+import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.api.RestApiManager
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import com.hilfritz.samplekotlin.util.ExceptionUtil
+import com.hilfritz.samplekotlin.util.ExceptionsUtil
 import com.hilfritz.samplekotlin.util.RxJava2Util
+import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 
 
 /**
  * Created by Hilfritz Camallere on 24/5/17.
  */
 class PlacesPresenterImpl
-    constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?)
+    constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?, var mainThread: Scheduler)
     : BasePresenter(), BasePresenterInterface, PlacesPresenterInterface {
 
     lateinit var apiManager:RestApiManager
@@ -82,21 +86,23 @@ class PlacesPresenterImpl
 
         //#3
 
-        apiManager.getPlacesPagedSubscribable("",0)
+        apiManager.getPlacesPagedObservable("",0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(mainThread)
                 .subscribe (object : DisposableObserver<PlacesWrapper>() {
                     override fun onNext(placesWrapper: PlacesWrapper) {
                         placesWrapper?.let {
                             val size = placesWrapper.place?.size
                             view.__hideLoading()
                             view._showList()
+                            System.out.printf("Great I found " + size + " records of places.")
                             view.__showFullScreenMessage("Great I found " + size + " records of places.")
-                            System.console().printf("onNext() ok")
                         }
-                        System.console().printf("onNext()")
+                        System.out.printf("onNext()")
                     }
 
                     override fun onError(e: Throwable) {
-                        if (ExceptionUtil.isNoNetworkException(e)){
+                        if (ExceptionsUtil.isNoNetworkException(e)){
                             view.__hideLoading()
                             view.__showFullScreenMessage("So sad, can not connect to network to get place list.")
                         }else{
@@ -109,7 +115,7 @@ class PlacesPresenterImpl
 
                     override fun onComplete() {
                         this.dispose()
-                        System.console().printf("onComplete()")
+                        //System.out.printf("onComplete()")
                     }
                 })
 

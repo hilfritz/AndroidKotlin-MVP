@@ -3,6 +3,7 @@ package com.hilfritz.samplekotlin.api
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit
  * see https://guides.codepath.com/android/Consuming-APIs-with-Retrofit
  */
 
-open class RestApiManager {
+open class RestApiManager: RestApiInterface{
 
     var api: RestApiInterface
         internal set
@@ -63,23 +64,26 @@ open class RestApiManager {
                     .observeOn(Schedulers.io())
     }
 
-    fun getPlacesPagedSubscribable(accessToken: String, page: Int
-    ): Observable<PlacesWrapper> {
-        return Observable.just(PlacesWrapper(Arrays.asList(PlaceItem(), PlaceItem())))
-        /*
+    override fun    getPlacesPagedObservable(accessToken: String?, page: Int?): Observable<PlacesWrapper> {
         return api.getPlacesPagedObservable(
                 accessToken,
                 page
-        ).subscribeOn(Schedulers.io())
-                .delay(5000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                */
+        )
     }
 
     /*
     val placesCall: Call<PlacesWrapper>
         get() = api.getPlacesCall()
     */
+
+    override fun getPlacesObservable(): Observable<PlacesWrapper> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getPlacesPagedResponseObservable(accessToken: String, page: Int): Observable<Response<PlacesWrapper>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     companion object {
         val BASE_URL = "http://jsonplaceholder.typicode.com"
         val USERS_URL = BASE_URL + "/users"
