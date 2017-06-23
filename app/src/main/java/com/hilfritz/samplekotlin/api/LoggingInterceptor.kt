@@ -40,7 +40,7 @@ class LoggingInterceptor : Interceptor {
 
 
         //Logger.d(TAG, "#REQ#POST#URL:"+ requestLog);
-        Log.d(TAG, "#REQ#POST#URL:" + requestLog)
+        //Log.d(TAG, "#REQ#POST#URL:" + requestLog)
         val response = chain.proceed(request)
         val t2 = System.nanoTime()
 
@@ -49,7 +49,7 @@ class LoggingInterceptor : Interceptor {
                 response.request().url(), (t2 - t1) / 1e6, response.headers())
         val bodyStringOnly = response.body()!!.string()
         //Logger.d(TAG,"#RSP#POST#URL:" +url.toString()+" #values:\n" + bodyStringOnly);
-        Log.d(TAG, "#RSP#POST#URL:" + url.toString() + " #values:\n" + bodyStringOnly)
+        //Log.d(TAG, "#RSP#POST#URL:" + url.toString() + " #values:\n" + bodyStringOnly)
 
         return response.newBuilder()
                 .body(ResponseBody.create(response.body()!!.contentType(), bodyStringOnly))

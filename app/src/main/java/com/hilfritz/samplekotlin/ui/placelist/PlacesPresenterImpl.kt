@@ -10,6 +10,7 @@ import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.api.RestApiManager
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
+import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import com.hilfritz.samplekotlin.util.ExceptionsUtil
@@ -28,6 +29,7 @@ class PlacesPresenterImpl
 
     lateinit var apiManager:RestApiInterface
     var placeListRequest: Disposable? = null
+    lateinit var list:ArrayList<PlaceItem>
 
 
     override fun __firstInit() {
@@ -38,6 +40,10 @@ class PlacesPresenterImpl
         this.view = view as PlacesView
         if (__isFirstTimeLoad())
             __firstInit()
+
+        list = ArrayList<PlaceItem>();
+        view._setAdapter(PlaceListAdapter(list, this))
+        view._getAdapter().notifyDataSetChanged()
     }
 
 
@@ -91,10 +97,16 @@ class PlacesPresenterImpl
                     override fun onNext(placesWrapper: PlacesWrapper) {
                         placesWrapper?.let {
                             val size = placesWrapper.place?.size
+                            if (size!!>0){
+                                list.clear()
+                            }
+                            list.addAll(ArrayList(placesWrapper.place)) //NEED TO CONVERT TO ARRAYLIST
+
+                            view._getAdapter().notifyDataSetChanged()
                             view.__hideLoading()
                             view._showList()
                             System.out.printf("Great I found " + size + " records of places.")
-                            view.__showFullScreenMessage("Great I found " + size + " records of places.")
+                            //view.__showFullScreenMessage("Great I found " + size + " records of places.")
                         }
                         System.out.println("onNext()")
                     }

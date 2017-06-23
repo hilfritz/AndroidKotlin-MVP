@@ -8,7 +8,7 @@
             type="com.hilfritz.samplekotlin.api.pojo.PlaceItem"/>
         <variable
             name="presenter"
-            type="com.hilfritz.samplekotlin.placelist.PlacesPresenter"/>
+            type="com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface"/>
 
     </data>
     <RelativeLayout
@@ -20,15 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:id="@+id/image"
+
             />
-        <!--
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/image"
-            app:loadImage="@{vm.pictureUrl}"
-            />
-            -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.hilfritz.samplekotlin.BaseFragment
 import com.hilfritz.samplekotlin.R
 import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
+import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -23,6 +24,7 @@ class PlacesFragment : BaseFragment(), PlacesView {
     lateinit var loading: View
     lateinit var fullScreenMessage: TextView
     lateinit var presenter: PlacesPresenterImpl
+    lateinit var adapter: PlaceListAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -88,5 +90,16 @@ class PlacesFragment : BaseFragment(), PlacesView {
 
     override fun __hideDialog(tag: String) {
     }
+    override fun _getAdapter(): PlaceListAdapter {
+        return adapter
+    }
+    override fun _setAdapter(adapter: PlaceListAdapter) {
+        this.adapter = adapter
+        this.list.adapter = this.adapter
+        this.adapter.notifyDataSetChanged()
+    }
 
+    override fun _getRecyclerView(): RecyclerView {
+        return list
+    }
 }

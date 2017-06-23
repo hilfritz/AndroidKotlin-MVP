@@ -1,6 +1,7 @@
 package com.hilfritz.samplekotlin
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.squareup.leakcanary.LeakCanary
 
 /**
@@ -11,6 +12,11 @@ open class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initLeakCanary()
+        initFresco()
+    }
+
+    private fun initFresco(){
+        Fresco.initialize(this)
     }
     private fun initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)) {
