@@ -21,11 +21,11 @@ open class MyApplication : Application() {
     private fun initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
-            // You should not __init your app in this process.
+            // You should not __initViews your app in this process.
             return;
         }
         LeakCanary.install(this);
-        // Normal app __init code...
+        // Normal app __initViews code...
     }
 
 }

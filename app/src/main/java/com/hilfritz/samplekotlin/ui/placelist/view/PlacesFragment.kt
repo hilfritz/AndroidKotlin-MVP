@@ -1,6 +1,8 @@
 package com.hilfritz.samplekotlin.ui.placelist.view
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -36,7 +38,7 @@ class PlacesFragment : BaseFragment(), PlacesView {
         super.onViewCreated(view, savedInstanceState)
         //VIEW INITIALIZATIONS
         __findViews()
-        __init()
+        __initViews()
 
         //PRESENTER INITIALIZATIONS
         presenter.__init(activity,savedInstanceState?: Bundle(),this)
@@ -76,14 +78,23 @@ class PlacesFragment : BaseFragment(), PlacesView {
         loading.visibility= View.GONE
     }
 
-    override fun __init() {
+    override fun __initViews() {
         //INITIALIZE THE LIST
         list?.let{  //same as if (list!=null)
             list.setHasFixedSize(true)
             var lm = LinearLayoutManager(activity)
-            lm.orientation = LinearLayoutManager.VERTICAL
-            //list.layoutManager =
-            list.layoutManager = lm
+
+            //HANDLE ORIENTATION CHANGE OF RECYCLERVIEW,
+            if (activity.resources.configuration.orientation === Configuration.ORIENTATION_PORTRAIT) {
+                //1 COLUMN IF PORTRAIT
+                val llm = LinearLayoutManager(activity)
+                llm.orientation = LinearLayoutManager.VERTICAL
+                list.setLayoutManager(llm)
+            } else {
+                //2 COLUMNS IF LANDSCAPE
+                list.setLayoutManager(GridLayoutManager(activity, 2))
+            }
+
 
         }
     }

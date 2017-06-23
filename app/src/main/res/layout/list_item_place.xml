@@ -42,7 +42,7 @@
             android:layout_above="@id/name"
             android:id="@+id/selected_indicator"
             android:background="#99000000"
-            android:visibility="@{vm.viewVisibility()}"
+            android:visibility="@{vm.isSelected()}"
             android:onClick="@{()->presenter._onListItemClick(vm)}"
             />
 

@@ -40,6 +40,8 @@ class PlaceListAdapter(list: ArrayList<PlaceItem>, internal var presenter: Place
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindConnection(list[position])
+        loadImage(holder.itemView.findViewById(R.id.image) as SimpleDraweeView, list[position].pictureUrl!!)
+        //(holder.itemView.findViewById(R.id.name) as TextView).text=list[position].pictureUrl
     }
 
     override fun getItemCount(): Int {
@@ -50,17 +52,18 @@ class PlaceListAdapter(list: ArrayList<PlaceItem>, internal var presenter: Place
         fun bindConnection(userWrapper: PlaceItem) {
             binding.setVm(userWrapper)
             binding.setPresenter(presenter)
-        }
+          }
     }
 
     companion object {
         private val TAG = "PlaceListAdapter"
-
+        /*
         @BindingAdapter("bind:loadImage")
         fun loadImage(simpleDraweeView: SimpleDraweeView, url: String) {
             //Log.d(TAG, "loadImage: url:"+url);
             simpleDraweeView.setImageURI(Uri.parse(url))
         }
+        */
     }
 
     @BindingAdapter("bind:loadImage")

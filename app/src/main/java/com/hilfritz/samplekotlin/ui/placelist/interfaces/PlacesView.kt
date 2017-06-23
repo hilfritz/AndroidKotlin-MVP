@@ -32,7 +32,7 @@ interface PlacesView: BaseView {
 
     }
 
-    override fun __init() {
+    override fun __initViews() {
 
     }
 

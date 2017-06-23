@@ -10,5 +10,5 @@ interface BaseView {
     fun __showFullScreenMessage(message: String)
     fun __showDialog(tag:String, message: String)
     fun __hideDialog(tag:String)
-    fun __init()
+    fun __initViews()
 }

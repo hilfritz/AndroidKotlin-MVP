@@ -2,7 +2,7 @@ package com.hilfritz.samplekotlin.ui.placelist
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import com.hilfritz.samplekotlin.BasePresenter
 import com.hilfritz.samplekotlin.BasePresenterInterface
 import com.hilfritz.samplekotlin.BaseView
@@ -18,6 +18,7 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 /**
@@ -27,6 +28,7 @@ class PlacesPresenterImpl
     constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?, var mainThread: Scheduler)
     : BasePresenter(), BasePresenterInterface, PlacesPresenterInterface {
 
+    val TAG = "PlacesPresenterImpl"
     lateinit var apiManager:RestApiInterface
     var placeListRequest: Disposable? = null
     lateinit var list:ArrayList<PlaceItem>
@@ -101,7 +103,6 @@ class PlacesPresenterImpl
                                 list.clear()
                             }
                             list.addAll(ArrayList(placesWrapper.place)) //NEED TO CONVERT TO ARRAYLIST
-
                             view._getAdapter().notifyDataSetChanged()
                             view.__hideLoading()
                             view._showList()
@@ -128,8 +129,6 @@ class PlacesPresenterImpl
                         //System.out.printf("onComplete()")
                     }
                 })
-
-
 
         /*
         val temp: DisposableObserver<String> = object : DisposableObserver<String>() {
@@ -158,8 +157,20 @@ class PlacesPresenterImpl
         }
     }
 
-    override fun _onListItemClick(item: PlaceItem) {
-        Toast.makeText(context, item.name+" is clicked", Toast.LENGTH_SHORT).show()
+    override fun _onListItemClick(place: PlaceItem) {
+        var temp=place
+        val index = list.indexOf(temp)
+        if (place.isSelected == View.GONE){
+            place.isSelected = View.VISIBLE
+        }else if (place.isSelected == View.VISIBLE){
+            place.isSelected = View.GONE
+        }
+
+        //place.set__viewIsSelected(newVisibility)
+        //Timber.d("onListItemClick: index:"+index);
+        //view._getAdapter().notifyDataSetChanged()
+        view._getAdapter().notifyItemChanged(index)
+        //Logger.d(TAG, "_onListItemClick:"+index+" "+temp.name+" "+list[index].isSelected)
     }
 
 }
