@@ -12,9 +12,7 @@ import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
-import com.hilfritz.samplekotlin.util.ExceptionUtil
 import com.hilfritz.samplekotlin.util.ExceptionsUtil
-import com.hilfritz.samplekotlin.util.RxJava2Util
 import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
@@ -28,7 +26,7 @@ class PlacesPresenterImpl
     constructor(var view: PlacesView, var context: Context, var savedInstanceState:Bundle?, var mainThread: Scheduler)
     : BasePresenter(), BasePresenterInterface, PlacesPresenterInterface {
 
-    lateinit var apiManager:RestApiManager
+    lateinit var apiManager:RestApiInterface
     var placeListRequest: Disposable? = null
 
 
@@ -98,7 +96,7 @@ class PlacesPresenterImpl
                             System.out.printf("Great I found " + size + " records of places.")
                             view.__showFullScreenMessage("Great I found " + size + " records of places.")
                         }
-                        System.out.printf("onNext()")
+                        System.out.println("onNext()")
                     }
 
                     override fun onError(e: Throwable) {
@@ -109,7 +107,7 @@ class PlacesPresenterImpl
                             view.__hideLoading()
                             view.__showFullScreenMessage("Oops, something went wrong. ["+e.localizedMessage+"]")
                         }
-                        System.console().printf("onError()")
+                        System.out.println("onError()")
                         this.dispose()
                     }
 

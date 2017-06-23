@@ -2,19 +2,24 @@ package com.hilfritz.samplekotlin.ui.places
 
 import android.os.Bundle
 import com.hilfritz.samplekotlin.AndroidTest
+import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.api.RestApiManager
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
 import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
+import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
 import java.util.*
+
+
 
 
 /**
@@ -25,8 +30,10 @@ class PlacesPresenterImplTest : AndroidTest(){
 
     lateinit var presenter:PlacesPresenterImpl
     lateinit var view:PlacesView
-    lateinit var apiManager:RestApiManager
-    //lateinit var apiManager:RestApiManager
+    lateinit var apiManager:RestApiInterface
+
+
+    val EXCEPTION_MESSAGE1 = "SORRY"
 
     val MANY_PLACES = Arrays.asList(PlaceItem(), PlaceItem());
     val manyPlacesWrapper = PlacesWrapper(MANY_PLACES)
@@ -42,44 +49,54 @@ class PlacesPresenterImplTest : AndroidTest(){
         //Schedulers.trampoline() runs the test in the same thread used by the test
         RxJavaPlugins.setIoSchedulerHandler { t -> Schedulers.trampoline() }
 
-        view = Mockito.mock<PlacesView>(PlacesView::class.java)
-        apiManager = Mockito.mock(RestApiManager::class.java)
+        view = mock<PlacesView>()
+        apiManager = mock<RestApiManager>()
         presenter = PlacesPresenterImpl(view,context(), Bundle(), Schedulers.trampoline())
         presenter.apiManager = apiManager
+
+        //exceptionPlacesWrapper = throw Exception(EXCEPTION_MESSAGE1);
     }
 
 
     @Test
     fun loadAllPlacesTest() {
-        Mockito.`when`(apiManager.getPlacesPagedObservable(Mockito.anyString(), Mockito.anyInt())).thenReturn(Observable.just(manyPlacesWrapper))
+        whenever(apiManager.getPlacesPagedObservable(anyString(), anyInt())).thenReturn(Observable.just(manyPlacesWrapper))
 
         presenter.__populate()
-        Mockito.verify(view, Mockito.atLeastOnce()).__showLoading()
-        Mockito.verify(view, Mockito.atLeastOnce())._showList()
-        Mockito.verify(view).__hideLoading()
-        Mockito.verify(view).__showFullScreenMessage(Mockito.anyString())
+        verify(view, atLeastOnce()).__showLoading()
+        verify(view, atLeastOnce())._showList()
+        verify(view).__hideLoading()
+        verify(view).__showFullScreenMessage(anyString())
     }
 
     @Test
     fun loadEmptyPlacesTest() {
 
-        Mockito.`when`(apiManager.getPlacesPagedObservable(Mockito.anyString(), Mockito.anyInt())).thenReturn(Observable.just(emptyPlacesWrapper))
+        whenever(apiManager.getPlacesPagedObservable(anyString(), anyInt())).thenReturn(Observable.just(emptyPlacesWrapper))
         presenter.__populate()
-        Mockito.verify(view, Mockito.atLeastOnce()).__showLoading()
-        Mockito.verify(view, Mockito.atLeastOnce())._showList()
-        Mockito.verify(view).__hideLoading()
-        Mockito.verify(view).__showFullScreenMessage(Mockito.anyString())
+        verify(view, atLeastOnce()).__showLoading()
+        verify(view, atLeastOnce())._showList()
+        verify(view).__hideLoading()
+        verify(view).__showFullScreenMessage(anyString())
     }
 
-    //@Test
+    @Test
     fun loadExceptionPlacesTest() {
-
-        Mockito.`when`(apiManager.getPlacesPagedObservable(Mockito.anyString(), Mockito.anyInt())).thenThrow(RuntimeException("sorry"))
+        whenever(apiManager.getPlacesPagedObservable(anyString(), anyInt())).thenReturn(Observable.error(Exception(EXCEPTION_MESSAGE1)))
         presenter.__populate()
-        Mockito.verify(view, Mockito.atLeastOnce()).__showLoading()
-        Mockito.verify(view, Mockito.atLeastOnce())._showList()
-        Mockito.verify(view).__hideLoading()
-        Mockito.verify(view).__showFullScreenMessage("sorry")
+        verify(view, atLeastOnce()).__showLoading()
+        verify(view, never())._showList()
+        verify(view).__hideLoading()
+        verify(view).__showFullScreenMessage(anyString())
+
+        //CHECK THE PARAMETER OF __showFullScreenMessage IF IT REALLY HAS THE EXCEPTION_MESSAGE1
+        //val fooCaptor = ArgumentCaptor.forClass<String, String>(String::class.java)
+
+        //verify(view).__showFullScreenMessage(fooCaptor.capture())
+            //getValue() contains value set in second call to doSomething()
+        //assertTrue(fooCaptor.value.toString().contains(EXCEPTION_MESSAGE1));
+
+
     }
 
 }
