@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -41,8 +40,9 @@ dependencies {
 
     /**
      * ANDROID DATA BINDING
+     *
      */
-    kapt 'com.android.databinding:compiler:2.3.1'
+    kapt "com.android.databinding:compiler:$gradle_version"
 
     /**
      * FRESCO LIBRARY
@@ -97,6 +97,7 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
 kapt {
     generateStubs = true
 }

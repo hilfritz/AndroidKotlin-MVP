@@ -1,6 +1,5 @@
 package com.hilfritz.samplekotlin.ui.placelist.helper
 
-import android.databinding.BindingAdapter
 import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
@@ -66,7 +65,8 @@ class PlaceListAdapter(list: ArrayList<PlaceItem>, internal var presenter: Place
         */
     }
 
-    @BindingAdapter("bind:loadImage")
+
+    //@BindingAdapter("bind:loadImage")
     fun loadImage(simpleDraweeView: SimpleDraweeView, url: String) {
         //Log.d(TAG, "loadImage: url:"+url);
         simpleDraweeView.setImageURI(Uri.parse(url))

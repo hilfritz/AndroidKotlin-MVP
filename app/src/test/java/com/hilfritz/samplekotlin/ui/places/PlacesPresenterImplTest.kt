@@ -18,8 +18,7 @@ import org.junit.Test
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
 import java.util.*
-
-
+import kotlin.collections.ArrayList
 
 
 /**
@@ -36,8 +35,8 @@ class PlacesPresenterImplTest : AndroidTest(){
     val EXCEPTION_MESSAGE1 = "SORRY"
 
     val MANY_PLACES = Arrays.asList(PlaceItem(), PlaceItem());
-    val manyPlacesWrapper = PlacesWrapper(MANY_PLACES)
-    val emptyPlacesWrapper = PlacesWrapper(Collections.emptyList())
+    val manyPlacesWrapper = PlacesWrapper(MANY_PLACES as ArrayList<PlaceItem>)
+    val emptyPlacesWrapper = PlacesWrapper(ArrayList<PlaceItem>())
 
     @After
     fun clear(){
@@ -47,7 +46,7 @@ class PlacesPresenterImplTest : AndroidTest(){
     fun init(){
         //MOCKS THE subscribeOn(Schedulers.io()) to use the same thread the test is being run on
         //Schedulers.trampoline() runs the test in the same thread used by the test
-        RxJavaPlugins.setIoSchedulerHandler { t -> Schedulers.trampoline() }
+        RxJavaPlugins.setIoSchedulerHandler { _ -> Schedulers.trampoline() }
 
         view = mock<PlacesView>()
         apiManager = mock<RestApiManager>()
@@ -98,5 +97,23 @@ class PlacesPresenterImplTest : AndroidTest(){
 
 
     }
+
+    /*
+    @Test
+    fun loadPlacesClickTest() {
+
+        whenever(apiManager.getPlacesPagedObservable(anyString(), anyInt())).thenReturn(Observable.just(manyPlacesWrapper))
+        presenter.__firstInit()
+        presenter.__init(context(),Bundle(),view)
+        presenter.__populate()
+        verify(view, atLeastOnce()).__showLoading()
+        verify(view, atLeastOnce())._showList()
+        verify(view).__hideLoading()
+
+        //view._getRecyclerView().click
+
+    }
+    */
+
 
 }
