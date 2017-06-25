@@ -1,6 +1,5 @@
 package com.hilfritz.samplekotlin.ui.placelist.view
 
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
@@ -16,6 +15,7 @@ import com.hilfritz.samplekotlin.BaseActivity
 import com.hilfritz.samplekotlin.BaseFragment
 import com.hilfritz.samplekotlin.MyApplication
 import com.hilfritz.samplekotlin.R
+import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
 import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
@@ -37,6 +37,9 @@ class PlacesFragment : BaseFragment(), PlacesView {
     lateinit var fullScreenMessage: TextView
 
     @Inject
+    lateinit var restApiManager: RestApiInterface
+
+    @Inject
     lateinit var presenter: PlacesPresenterImpl
 
     lateinit var adapter: PlaceListAdapter
@@ -54,6 +57,7 @@ class PlacesFragment : BaseFragment(), PlacesView {
         __initViews()
 
         //PRESENTER INITIALIZATIONS
+        presenter.apiManager = restApiManager
         presenter.__init(activity,savedInstanceState?: Bundle(),this, AndroidSchedulers.mainThread())
         presenter.__populate()
     }

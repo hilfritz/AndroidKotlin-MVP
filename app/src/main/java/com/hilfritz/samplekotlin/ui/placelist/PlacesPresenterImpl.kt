@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.hilfritz.samplekotlin.BasePresenter
 import com.hilfritz.samplekotlin.BasePresenterInterface
 import com.hilfritz.samplekotlin.BaseView
-import com.hilfritz.samplekotlin.MyApplication
 import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
@@ -23,7 +22,6 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 
 /**
@@ -33,7 +31,6 @@ class PlacesPresenterImpl()
     : BasePresenter(), BasePresenterInterface, PlacesPresenterInterface {
 
     override var TAG = "PlacesPresenterImpl"
-    @Inject
     lateinit var apiManager:RestApiInterface
     var placeListRequest: Disposable? = null
     var list:ArrayList<PlaceItem> = ArrayList<PlaceItem>();
@@ -48,8 +45,6 @@ class PlacesPresenterImpl()
     }
 
     override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?, mainThread: Scheduler) {
-
-        (context.applicationContext as MyApplication).appComponent.inject(this)
         this.view = view as PlacesView
         if (__isFirstTimeLoad())
             __firstInit()
@@ -60,7 +55,7 @@ class PlacesPresenterImpl()
     }
 
     override fun _refresh() {
-        Toast.makeText(view.__getActivity(), "refreshing", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(view.__getActivity(), "refreshing", Toast.LENGTH_SHORT).show()
         __setForRefresh()
         __populate()
     }

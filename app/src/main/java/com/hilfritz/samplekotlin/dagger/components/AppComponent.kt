@@ -1,7 +1,6 @@
 package com.hilfritz.samplekotlin.dagger.components
 
 import com.hilfritz.samplekotlin.dagger.modules.*
-import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
 import com.hilfritz.samplekotlin.ui.placelist.view.PlacesFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -12,7 +11,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(RestApiModule::class, PresenterModule::class, UtilityModule::class, SessionModule::class, CacheModule::class))
-interface AppComponent {
+interface AppComponent{
     fun inject(fragment: PlacesFragment)
-    fun inject(presenter: PlacesPresenterImpl)
+    //fun inject(presenter: PlacesPresenterImpl)
 }
