@@ -26,6 +26,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -80,7 +84,12 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
+
+    compile 'commons-io:commons-io:2.4'
+
     testCompile "org.robolectric:robolectric:3.3.2"
+
+
     /*
     testCompile 'org.mockito:mockito-core:2.8.47'
 
@@ -96,8 +105,4 @@ dependencies {
 }
 repositories {
     mavenCentral()
-}
-
-kapt {
-    generateStubs = true
 }

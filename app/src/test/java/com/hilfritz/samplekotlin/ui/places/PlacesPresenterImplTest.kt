@@ -50,7 +50,8 @@ class PlacesPresenterImplTest : AndroidTest(){
 
         view = mock<PlacesView>()
         apiManager = mock<RestApiManager>()
-        presenter = PlacesPresenterImpl(view,context(), Bundle(), Schedulers.trampoline())
+        presenter = PlacesPresenterImpl()
+        presenter.__init(context(), Bundle.EMPTY, view, Schedulers.trampoline())
         presenter.apiManager = apiManager
 
         //exceptionPlacesWrapper = throw Exception(EXCEPTION_MESSAGE1);

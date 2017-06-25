@@ -11,4 +11,5 @@ interface BaseView {
     fun __showDialog(tag:String, message: String)
     fun __hideDialog(tag:String)
     fun __initViews()
+    fun __getActivity():BaseActivity
 }
