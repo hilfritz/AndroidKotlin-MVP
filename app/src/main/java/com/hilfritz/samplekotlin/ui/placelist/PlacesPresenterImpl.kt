@@ -94,7 +94,7 @@ class PlacesPresenterImpl()
             Logger.d(TAG,"_callPlacesApi() list already downloaded and rotation happened")
             isFromRotation = false
             view.__hideLoading()
-            Toast.makeText(view.__getActivity(), "already loaded", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(view.__getActivity(), "already loaded", Toast.LENGTH_SHORT).show()
             return
         }
 
