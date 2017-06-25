@@ -208,7 +208,7 @@ class PlacesPresenterImpl()
         //Timber.d("onListItemClick: index:"+index);
         //view._getAdapter().notifyDataSetChanged()
         view._getAdapter().notifyItemChanged(index)
-        //Logger.d(TAG, "_onListItemClick:"+index+" "+temp.name+" "+list[index].isSelected)
+        Logger.d(TAG, "_onListItemClick:"+index+" "+temp.name+" "+list[index].isSelected)
     }
 
 
