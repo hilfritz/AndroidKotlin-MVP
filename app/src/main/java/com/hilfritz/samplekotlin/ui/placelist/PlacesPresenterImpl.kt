@@ -48,7 +48,8 @@ class PlacesPresenterImpl()
     }
 
     override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?, mainThread: Scheduler) {
-        (context.applicationContext as MyApplication).appComponent.inject(this)
+        if (context is MyApplication)
+            (context.applicationContext as MyApplication).appComponent.inject(this)
         this.view = view as PlacesView
         if (__isFirstTimeLoad())
             __firstInit()

@@ -34,8 +34,8 @@ class PlacesPresenterImplTest : AndroidTest(){
 
     val EXCEPTION_MESSAGE1 = "SORRY"
 
-    val MANY_PLACES = Arrays.asList(PlaceItem(), PlaceItem());
-    val manyPlacesWrapper = PlacesWrapper(MANY_PLACES as ArrayList<PlaceItem>)
+    val MANY_PLACES = ArrayList<PlaceItem>(Arrays.asList(PlaceItem(), PlaceItem()))
+    val manyPlacesWrapper = PlacesWrapper(MANY_PLACES)
     val emptyPlacesWrapper = PlacesWrapper(ArrayList<PlaceItem>())
 
     @After
