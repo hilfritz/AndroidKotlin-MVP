@@ -44,9 +44,9 @@ dependencies {
 
     /**
      * ANDROID DATA BINDING
-     *
+     * kapt "com.android.databinding:compiler:$gradle_version"
      */
-    kapt "com.android.databinding:compiler:$gradle_version"
+
 
     /**
      * FRESCO LIBRARY

@@ -3,7 +3,6 @@ package com.hilfritz.samplekotlin.ui.placelist
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.hilfritz.samplekotlin.BasePresenter
 import com.hilfritz.samplekotlin.BasePresenterInterface
 import com.hilfritz.samplekotlin.BaseView
@@ -51,7 +50,7 @@ class PlacesPresenterImpl()
 
         this.mainThread = mainThread
         view._setAdapter(PlaceListAdapter(list, this))
-        view._getAdapter().notifyDataSetChanged()
+        view._getAdapter()?.notifyDataSetChanged()
     }
 
     override fun _refresh() {
