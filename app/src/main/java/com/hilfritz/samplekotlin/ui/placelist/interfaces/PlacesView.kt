@@ -2,7 +2,9 @@ package com.hilfritz.samplekotlin.ui.placelist.interfaces
 
 import android.support.v7.widget.RecyclerView
 import com.hilfritz.samplekotlin.BaseView
+import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
+import java.util.*
 
 /**
  * Created by Hilfritz Camallere on 24/5/17.
@@ -38,7 +40,9 @@ interface PlacesView: BaseView {
 
     fun _showList()
 
-    fun _getAdapter():PlaceListAdapter
-    fun _setAdapter(adapter:PlaceListAdapter)
+    fun _createAdapter(list: ArrayList<PlaceItem>, presenter:PlacesPresenterInterface):PlaceListAdapter
+    fun _reInitializeRecyeclerView(list: ArrayList<PlaceItem>, presenter:PlacesPresenterInterface)
+    fun _notifyDataSetChangedRecyeclerView()
+    fun _notifyDataSetChangedRecyeclerView(index:Int)
     fun _getRecyclerView():RecyclerView
 }

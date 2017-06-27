@@ -16,10 +16,13 @@ import com.hilfritz.samplekotlin.BaseFragment
 import com.hilfritz.samplekotlin.MyApplication
 import com.hilfritz.samplekotlin.R
 import com.hilfritz.samplekotlin.api.RestApiInterface
+import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
 import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
+import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -123,16 +126,26 @@ class PlacesFragment : BaseFragment(), PlacesView {
 
     override fun __hideDialog(tag: String) {
     }
-    override fun _getAdapter(): PlaceListAdapter {
-        return adapter
-    }
-    override fun _setAdapter(adapter: PlaceListAdapter) {
-        this.adapter = adapter
-        this.list.adapter = this.adapter
-        this.adapter.notifyDataSetChanged()
-    }
 
     override fun _getRecyclerView(): RecyclerView {
         return list
     }
+
+    override fun _reInitializeRecyeclerView(list: ArrayList<PlaceItem>, presenter: PlacesPresenterInterface) {
+        this.adapter = _createAdapter(list, presenter)
+        this.list.adapter = this.adapter
+        this.adapter.notifyDataSetChanged()
+    }
+
+    override fun _createAdapter(list: ArrayList<PlaceItem>, presenter: PlacesPresenterInterface): PlaceListAdapter {
+        return PlaceListAdapter(list,presenter)
+    }
+    override fun _notifyDataSetChangedRecyeclerView() {
+        this.adapter.notifyDataSetChanged()
+    }
+    override fun _notifyDataSetChangedRecyeclerView(index: Int) {
+        this.adapter.notifyItemChanged(index)
+    }
+
+
 }

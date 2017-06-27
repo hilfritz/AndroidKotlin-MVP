@@ -47,6 +47,7 @@ object Logger {
                 Log.WARN -> Log.w(TAG, msg)
                 Log.ERROR -> Log.e(TAG, msg)
             }
+            System.out.println(msg)
         }
     }
 

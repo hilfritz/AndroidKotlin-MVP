@@ -61,12 +61,10 @@ class PlacesPresenterImplTest : AndroidTest(){
     @Test
     fun loadAllPlacesTest() {
         whenever(apiManager.getPlacesPagedObservable(anyString(), anyInt())).thenReturn(Observable.just(manyPlacesWrapper))
-
         presenter.__populate()
         verify(view, atLeastOnce()).__showLoading()
         verify(view, atLeastOnce())._showList()
         verify(view).__hideLoading()
-        verify(view).__showFullScreenMessage(anyString())
     }
 
     @Test

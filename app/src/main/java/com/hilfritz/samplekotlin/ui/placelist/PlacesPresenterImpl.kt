@@ -9,7 +9,6 @@ import com.hilfritz.samplekotlin.BaseView
 import com.hilfritz.samplekotlin.api.RestApiInterface
 import com.hilfritz.samplekotlin.api.pojo.PlaceItem
 import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
-import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
 import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
 import com.hilfritz.samplekotlin.util.ExceptionsUtil
@@ -20,7 +19,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -49,8 +47,8 @@ class PlacesPresenterImpl()
             __firstInit()
 
         this.mainThread = mainThread
-        view._setAdapter(PlaceListAdapter(list, this))
-        view._getAdapter()?.notifyDataSetChanged()
+        view._reInitializeRecyeclerView(list, this)
+        view._notifyDataSetChangedRecyeclerView()
     }
 
     override fun _refresh() {
@@ -125,7 +123,6 @@ class PlacesPresenterImpl()
         //#3
 
         apiManager.getPlacesPagedObservable("",0)
-                .delay(3000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(mainThread)
                 .subscribe (object : DisposableObserver<PlacesWrapper>() {
@@ -134,12 +131,14 @@ class PlacesPresenterImpl()
                             val size = placesWrapper.place?.size
                             if (size!!>0){
                                 list.clear()
+                            }else{
+                                view.__showFullScreenMessage("empty list")
                             }
                             list.addAll(ArrayList(placesWrapper.place)) //NEED TO CONVERT TO ARRAYLIST
-                            view._getAdapter().notifyDataSetChanged()
+                            view._notifyDataSetChangedRecyeclerView()
                             view.__hideLoading()
                             view._showList()
-                            System.out.printf("Great I found " + size + " records of places.")
+                            System.out.println("Great I found " + size + " records of places.")
                             //view.__showFullScreenMessage("Great I found " + size + " records of places.")
                         }
                         System.out.println("onNext()")
@@ -159,7 +158,7 @@ class PlacesPresenterImpl()
 
                     override fun onComplete() {
                         this.dispose()
-                        //System.out.printf("onComplete()")
+                        System.out.printf("onComplete()")
                     }
                 })
 
@@ -202,7 +201,8 @@ class PlacesPresenterImpl()
         //place.set__viewIsSelected(newVisibility)
         //Timber.d("onListItemClick: index:"+index);
         //view._getAdapter().notifyDataSetChanged()
-        view._getAdapter().notifyItemChanged(index)
+        view._notifyDataSetChangedRecyeclerView(index)
+        //view._getAdapter().notifyItemChanged(index)
         Logger.d(TAG, "_onListItemClick:"+index+" "+temp.name+" "+list[index].isSelected)
     }
 
