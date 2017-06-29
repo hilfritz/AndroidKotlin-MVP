@@ -10,12 +10,12 @@ import com.google.gson.annotations.SerializedName
 class PlacesWrapper {
 
     constructor() {}
-    constructor(place: List<PlaceItem>) {
+    constructor(place: ArrayList<PlaceItem>) {
         this.place = place
     }
 
     @SerializedName("place_list")
     @Expose
-    var place: List<PlaceItem>? = null
+    var place: ArrayList<PlaceItem>? = null
 
 }

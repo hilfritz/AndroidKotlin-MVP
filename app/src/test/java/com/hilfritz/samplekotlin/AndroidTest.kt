@@ -16,7 +16,7 @@ import java.io.File
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class,
         application = AndroidTest.ApplicationStub::class,
-        sdk = intArrayOf(21))
+        sdk = intArrayOf(22))
 abstract class AndroidTest {
 
     fun context(): Context {

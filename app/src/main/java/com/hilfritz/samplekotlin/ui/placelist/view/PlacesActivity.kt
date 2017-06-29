@@ -13,13 +13,6 @@ class PlacesActivity : BaseActivity() {
         val toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
         setSupportActionBar(toolbar)
 
-        /*
-        val fab = findViewById(R.id.fab) as android.support.design.widget.FloatingActionButton
-        fab.setOnClickListener { view ->
-            android.support.design.widget.Snackbar.make(view, "Replace with your own action", android.support.design.widget.Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-        */
     }
 
     override fun onDestroy() {

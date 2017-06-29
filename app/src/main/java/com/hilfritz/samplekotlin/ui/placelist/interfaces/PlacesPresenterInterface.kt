@@ -6,5 +6,5 @@ package com.hilfritz.samplekotlin.ui.placelist.interfaces
 interface PlacesPresenterInterface {
     fun _callPlacesApi()
     fun _onListItemClick(item: com.hilfritz.samplekotlin.api.pojo.PlaceItem)
-
+    fun _refresh()
 }

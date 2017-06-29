@@ -17,14 +17,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled = true
+        }
     }
     dataBinding {
         enabled = true
     }
 }
+
 kapt {
     generateStubs = true
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -35,8 +40,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.github.ReactiveX:RxKotlin:2.0.3'
+
+    /**
+     * ANDROID DATA BINDING
+     * kapt "com.android.databinding:compiler:$gradle_version"
+     */
+
+
     /**
      * FRESCO LIBRARY
      */
@@ -69,12 +80,23 @@ dependencies {
     /**
      * Dagger 2
      */
-    compile 'com.google.dagger:dagger:2.4'
-    kapt 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
+
+    compile 'commons-io:commons-io:2.4'
+
     testCompile "org.robolectric:robolectric:3.3.2"
-    testCompile 'org.mockito:mockito-core:2.+'
+
+
+    /*
+    testCompile 'org.mockito:mockito-core:2.8.47'
+
+       */
+    // https://mvnrepository.com/artifact/com.nhaarman/mockito-kotlin
+    testCompile group: 'com.nhaarman', name: 'mockito-kotlin-kt1.1', version: '1.5.0'
+
     testCompile 'junit:junit:4.12'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
@@ -83,4 +105,9 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+    }
 }
