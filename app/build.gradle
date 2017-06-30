@@ -24,6 +24,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    testOptions {
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 kapt {
