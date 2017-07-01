@@ -10,9 +10,7 @@ import java.util.*
  * Created by Hilfritz Camallere on 24/5/17.
  */
 interface PlacesView: BaseView {
-
     fun _showList()
-
     fun _createAdapter(list: ArrayList<PlaceItem>, presenter:PlacesPresenterInterface):PlaceListAdapter
     fun _reInitializeRecyeclerView(list: ArrayList<PlaceItem>, presenter:PlacesPresenterInterface)
     fun _notifyDataSetChangedRecyeclerView()

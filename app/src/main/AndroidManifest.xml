@@ -8,32 +8,50 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.hilfritz.android.MyApplication"
-        >
-        <activity android:name="com.hilfritz.android.ui.main.MainActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.main.MainActivity" />
         <activity
-            android:name="com.hilfritz.android.ui.login.LoginActivityKotlin"
-            android:label="@string/title_activity_login_kotlin">
-
-        </activity>
+            android:name=".ui.login.LoginActivityKotlin"
+            android:label="@string/title_activity_login_kotlin" />
         <activity
-            android:name="com.hilfritz.android.ui.placelist.view.PlacesActivity"
+            android:name=".ui.placelist.view.PlacesActivity"
             android:label="@string/title_activity_places"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".barfinder.ui.main.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".barfinder.ui.search.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".barfinder.ui.details.DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".barfinder.ui.list.ListActivity"
+            android:label="@string/title_activity_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
