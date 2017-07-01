@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hilfritz.samplekotlin">
+    package="com.hilfritz.android">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -17,16 +17,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MyApplication"
+        android:name="com.hilfritz.android.MyApplication"
         >
-        <activity android:name=".ui.main.MainActivity"></activity>
+        <activity android:name="com.hilfritz.android.ui.main.MainActivity"></activity>
         <activity
-            android:name="com.hilfritz.samplekotlin.ui.login.LoginActivityKotlin"
+            android:name="com.hilfritz.android.ui.login.LoginActivityKotlin"
             android:label="@string/title_activity_login_kotlin">
 
         </activity>
         <activity
-            android:name="com.hilfritz.samplekotlin.ui.placelist.view.PlacesActivity"
+            android:name="com.hilfritz.android.ui.placelist.view.PlacesActivity"
             android:label="@string/title_activity_places"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
