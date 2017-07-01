@@ -38,7 +38,8 @@ class PlacesPresenterImpl()
 
 
     override fun __firstInit() {
-
+        Logger.d(TAG,"__firstInit() initializing presenter, presenter is used for newly created view from scratch ")
+        list.clear()
     }
 
     override fun __init(context: Context, savedInstanceState: Bundle, view: BaseView?, mainThread: Scheduler) {
@@ -61,14 +62,12 @@ class PlacesPresenterImpl()
     override fun __destroy() {
         super.__destroy()
         placeListRequest?.dispose()
-
         if((view.__getActivity()).isFinishing()){
             //Log.i("DEBUG", "App will Terminate ");
         }else{
             //Log.i("DEBUG", "Orientation changed");
             isFromRotation = true
         }
-        this.view = null!!
     }
 
     override fun __populate() {
