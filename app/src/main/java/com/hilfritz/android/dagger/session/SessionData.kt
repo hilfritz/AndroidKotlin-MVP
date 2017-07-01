@@ -1,6 +1,6 @@
-package com.hilfritz.samplekotlin.dagger.session
+package com.hilfritz.android.dagger.session
 
-import com.hilfritz.samplekotlin.MyApplication
+import com.hilfritz.android.MyApplication
 import java.util.*
 
 /**

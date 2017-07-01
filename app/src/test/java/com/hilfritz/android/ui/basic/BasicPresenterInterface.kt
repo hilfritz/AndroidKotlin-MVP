@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.basic
+package com.hilfritz.android.ui.basic
 
 /**
  * Created by Hilfritz Camallere on 15/6/17.

@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.dagger.modules
+package com.hilfritz.android.dagger.modules
 
 import com.google.gson.Gson
 import dagger.Module

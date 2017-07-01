@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin;
+package com.hilfritz.android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

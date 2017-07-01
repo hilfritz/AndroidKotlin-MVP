@@ -1,6 +1,6 @@
-package com.hilfritz.samplekotlin.util
+package com.hilfritz.android.util
 
-import com.hilfritz.samplekotlin.MyApplication
+import com.hilfritz.android.MyApplication
 import java.io.File
 
 /**

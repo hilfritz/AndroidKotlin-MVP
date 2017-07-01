@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin;
+package com.hilfritz.android;
 
 import org.junit.Test;
 

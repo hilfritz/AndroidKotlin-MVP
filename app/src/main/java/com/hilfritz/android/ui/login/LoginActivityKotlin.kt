@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.login
+package com.hilfritz.android.ui.login
 
 import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
@@ -21,8 +21,8 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.hilfritz.samplekotlin.R
-import com.hilfritz.samplekotlin.ui.placelist.view.PlacesActivity
+import com.hilfritz.android.R
+import com.hilfritz.android.ui.placelist.view.PlacesActivity
 import java.util.*
 
 /**

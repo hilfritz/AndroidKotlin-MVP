@@ -1,8 +1,8 @@
-package com.hilfritz.samplekotlin.ui.placelist.view
+package com.hilfritz.android.ui.placelist.view
 
-import com.hilfritz.samplekotlin.BaseActivity
-import com.hilfritz.samplekotlin.R
-import com.hilfritz.samplekotlin.util.log.Logger
+import com.hilfritz.android.BaseActivity
+import com.hilfritz.android.R
+import com.hilfritz.android.util.log.Logger
 
 class PlacesActivity : BaseActivity() {
     val TAG = "PlacesActivity";

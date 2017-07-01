@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.util.network
+package com.hilfritz.android.util.network
 
 import android.util.Log
 import cz.msebera.android.httpclient.NameValuePair

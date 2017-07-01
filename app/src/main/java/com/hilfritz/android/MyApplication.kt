@@ -1,10 +1,10 @@
-package com.hilfritz.samplekotlin
+package com.hilfritz.android
 
 import android.app.Application
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.hilfritz.samplekotlin.dagger.components.AppComponent
-import com.hilfritz.samplekotlin.dagger.components.DaggerAppComponent
-import com.hilfritz.samplekotlin.dagger.modules.*
+import com.hilfritz.android.dagger.components.AppComponent
+import com.hilfritz.android.dagger.components.DaggerAppComponent
+import com.hilfritz.android.dagger.modules.*
 import com.squareup.leakcanary.LeakCanary
 
 /**

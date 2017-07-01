@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin
+package com.hilfritz.android
 
 /**
  * Created by Hilfritz Camallere on 24/5/17.

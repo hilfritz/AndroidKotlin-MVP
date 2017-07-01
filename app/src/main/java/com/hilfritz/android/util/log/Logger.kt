@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.util.log
+package com.hilfritz.android.util.log
 
 import android.util.Log
 

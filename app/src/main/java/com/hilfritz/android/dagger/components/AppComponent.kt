@@ -1,7 +1,7 @@
-package com.hilfritz.samplekotlin.dagger.components
+package com.hilfritz.android.dagger.components
 
-import com.hilfritz.samplekotlin.dagger.modules.*
-import com.hilfritz.samplekotlin.ui.placelist.view.PlacesFragment
+import com.hilfritz.android.dagger.modules.*
+import com.hilfritz.android.ui.placelist.view.PlacesFragment
 import dagger.Component
 import javax.inject.Singleton
 

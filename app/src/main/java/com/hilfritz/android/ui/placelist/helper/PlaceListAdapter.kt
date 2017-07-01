@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.placelist.helper
+package com.hilfritz.android.ui.placelist.helper
 
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
-import com.hilfritz.samplekotlin.R
-import com.hilfritz.samplekotlin.api.pojo.PlaceItem
-import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
+import com.hilfritz.android.R
+import com.hilfritz.android.api.pojo.PlaceItem
+import com.hilfritz.android.ui.placelist.interfaces.PlacesPresenterInterface
 import java.util.*
 
 

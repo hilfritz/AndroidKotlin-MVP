@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.api.pojo
+package com.hilfritz.android.api.pojo
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

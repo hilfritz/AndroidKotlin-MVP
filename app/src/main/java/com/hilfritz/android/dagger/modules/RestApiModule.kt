@@ -1,7 +1,7 @@
-package com.hilfritz.samplekotlin.dagger.modules
+package com.hilfritz.android.dagger.modules
 
-import com.hilfritz.samplekotlin.api.RestApiInterface
-import com.hilfritz.samplekotlin.api.RestApiManager
+import com.hilfritz.android.api.RestApiInterface
+import com.hilfritz.android.api.RestApiManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.ui.placelist.view
+package com.hilfritz.android.ui.placelist.view
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -11,16 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.hilfritz.samplekotlin.BaseActivity
-import com.hilfritz.samplekotlin.BaseFragment
-import com.hilfritz.samplekotlin.MyApplication
-import com.hilfritz.samplekotlin.R
-import com.hilfritz.samplekotlin.api.RestApiInterface
-import com.hilfritz.samplekotlin.api.pojo.PlaceItem
-import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
-import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
-import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesPresenterInterface
-import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
+import com.hilfritz.android.BaseActivity
+import com.hilfritz.android.BaseFragment
+import com.hilfritz.android.MyApplication
+import com.hilfritz.android.R
+import com.hilfritz.android.api.RestApiInterface
+import com.hilfritz.android.api.pojo.PlaceItem
+import com.hilfritz.android.ui.placelist.PlacesPresenterImpl
+import com.hilfritz.android.ui.placelist.helper.PlaceListAdapter
+import com.hilfritz.android.ui.placelist.interfaces.PlacesPresenterInterface
+import com.hilfritz.android.ui.placelist.interfaces.PlacesView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.*
 import javax.inject.Inject

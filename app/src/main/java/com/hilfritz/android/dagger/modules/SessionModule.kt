@@ -1,7 +1,7 @@
-package com.hilfritz.samplekotlin.dagger.modules
+package com.hilfritz.android.dagger.modules
 
-import com.hilfritz.samplekotlin.MyApplication
-import com.hilfritz.samplekotlin.dagger.session.SessionData
+import com.hilfritz.android.MyApplication
+import com.hilfritz.android.dagger.session.SessionData
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

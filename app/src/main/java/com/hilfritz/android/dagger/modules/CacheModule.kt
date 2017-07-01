@@ -1,7 +1,7 @@
-package com.hilfritz.samplekotlin.dagger.modules
+package com.hilfritz.android.dagger.modules
 
-import com.hilfritz.samplekotlin.MyApplication
-import com.hilfritz.samplekotlin.util.ImageCache
+import com.hilfritz.android.MyApplication
+import com.hilfritz.android.util.ImageCache
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

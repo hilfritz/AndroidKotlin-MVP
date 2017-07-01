@@ -1,9 +1,9 @@
-package com.hilfritz.samplekotlin.ui.placelist.interfaces
+package com.hilfritz.android.ui.placelist.interfaces
 
 import android.support.v7.widget.RecyclerView
-import com.hilfritz.samplekotlin.BaseView
-import com.hilfritz.samplekotlin.api.pojo.PlaceItem
-import com.hilfritz.samplekotlin.ui.placelist.helper.PlaceListAdapter
+import com.hilfritz.android.BaseView
+import com.hilfritz.android.api.pojo.PlaceItem
+import com.hilfritz.android.ui.placelist.helper.PlaceListAdapter
 import java.util.*
 
 /**

@@ -1,13 +1,13 @@
-package com.hilfritz.samplekotlin.ui.places
+package com.hilfritz.android.ui.places
 
 import android.os.Bundle
-import com.hilfritz.samplekotlin.AndroidTest
-import com.hilfritz.samplekotlin.api.RestApiInterface
-import com.hilfritz.samplekotlin.api.RestApiManager
-import com.hilfritz.samplekotlin.api.pojo.PlaceItem
-import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
-import com.hilfritz.samplekotlin.ui.placelist.PlacesPresenterImpl
-import com.hilfritz.samplekotlin.ui.placelist.interfaces.PlacesView
+import com.hilfritz.android.AndroidTest
+import com.hilfritz.android.api.RestApiInterface
+import com.hilfritz.android.api.RestApiManager
+import com.hilfritz.android.api.pojo.PlaceItem
+import com.hilfritz.android.api.pojo.PlacesWrapper
+import com.hilfritz.android.ui.placelist.PlacesPresenterImpl
+import com.hilfritz.android.ui.placelist.interfaces.PlacesView
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins

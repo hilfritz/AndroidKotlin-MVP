@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.util
+package com.hilfritz.android.util
 
 import java.net.UnknownHostException
 

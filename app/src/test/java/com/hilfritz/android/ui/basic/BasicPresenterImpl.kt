@@ -1,9 +1,9 @@
-package com.hilfritz.samplekotlin.ui.basic
+package com.hilfritz.android.ui.basic
 
 import android.content.Context
 import android.os.Bundle
-import com.hilfritz.samplekotlin.BasePresenter
-import com.hilfritz.samplekotlin.BaseView
+import com.hilfritz.android.BasePresenter
+import com.hilfritz.android.BaseView
 import io.reactivex.Scheduler
 
 /**

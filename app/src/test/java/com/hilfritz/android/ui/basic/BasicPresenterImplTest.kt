@@ -1,7 +1,7 @@
-package com.hilfritz.samplekotlin.ui.basic
+package com.hilfritz.android.ui.basic
 
 import android.os.Bundle
-import com.hilfritz.samplekotlin.AndroidTest
+import com.hilfritz.android.AndroidTest
 import org.junit.Assert
 import org.junit.Test
 

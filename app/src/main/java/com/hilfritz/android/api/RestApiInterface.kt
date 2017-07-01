@@ -1,6 +1,6 @@
-package com.hilfritz.samplekotlin.api
+package com.hilfritz.android.api
 
-import com.hilfritz.samplekotlin.api.pojo.PlacesWrapper
+import com.hilfritz.android.api.pojo.PlacesWrapper
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.hilfritz.samplekotlin.api.pojo
+package com.hilfritz.android.api.pojo
 
 import android.view.View
 import com.google.gson.annotations.Expose
