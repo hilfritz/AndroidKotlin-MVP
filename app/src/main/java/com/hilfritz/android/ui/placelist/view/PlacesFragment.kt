@@ -147,5 +147,8 @@ class PlacesFragment : BaseFragment(), PlacesView {
         this.adapter.notifyItemChanged(index)
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.__destroy()
+    }
 }
