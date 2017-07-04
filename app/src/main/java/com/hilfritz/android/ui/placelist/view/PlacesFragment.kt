@@ -11,7 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.hilfritz.android.*
+import com.hilfritz.android.BaseActivity
+import com.hilfritz.android.BaseFragment
+import com.hilfritz.android.MyApplication
+import com.hilfritz.android.R
 import com.hilfritz.android.api.RestApiInterface
 import com.hilfritz.android.api.pojo.PlaceItem
 import com.hilfritz.android.ui.placelist.PlacesPresenterImpl
@@ -26,6 +29,7 @@ import javax.inject.Inject
  * A placeholder fragment containing a simple view.
  */
 class PlacesFragment : BaseFragment(), PlacesView {
+
 
     override fun __getActivity(): BaseActivity {
         return activity as BaseActivity
@@ -147,5 +151,8 @@ class PlacesFragment : BaseFragment(), PlacesView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.__destroy()
+    }
+    override fun __isFinishing(): Boolean {
+        return __getActivity().isFinishing
     }
 }

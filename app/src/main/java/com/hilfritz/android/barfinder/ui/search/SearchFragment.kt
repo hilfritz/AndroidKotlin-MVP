@@ -1,6 +1,5 @@
 package com.hilfritz.android.barfinder.ui.search
 
-import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,17 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.hilfritz.android.BaseActivity
 import com.hilfritz.android.BaseFragment
-
 import com.hilfritz.android.R
 import com.hilfritz.android.api.pojo.PlaceItem
 import com.hilfritz.android.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.android.ui.placelist.interfaces.PlacesPresenterInterface
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class SearchFragment : BaseFragment(), SearchViewInterface {
+    override fun __isFinishing(): Boolean {
+        return __getActivity().isFinishing
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
