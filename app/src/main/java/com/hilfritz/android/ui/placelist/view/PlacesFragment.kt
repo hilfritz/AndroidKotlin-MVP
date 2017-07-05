@@ -30,10 +30,6 @@ import javax.inject.Inject
  */
 class PlacesFragment : BaseFragment(), PlacesView {
 
-    override fun __getActivity(): BaseActivity {
-        return activity as BaseActivity
-    }
-
     lateinit var list: RecyclerView
     lateinit var refreshLayout: SwipeRefreshLayout
     lateinit var loading: View
@@ -150,5 +146,12 @@ class PlacesFragment : BaseFragment(), PlacesView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.__destroy()
+    }
+    override fun __isFinishing(): Boolean {
+        return __getActivity().isFinishing
+    }
+
+    override fun __getActivity(): BaseActivity {
+        return activity as BaseActivity
     }
 }

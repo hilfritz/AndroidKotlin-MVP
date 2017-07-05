@@ -60,13 +60,15 @@ class PlacesPresenterImpl()
 
 
     override fun __destroy() {
-        super.__destroy()
-        placeListRequest?.dispose()
-        if((view.__getActivity()).isFinishing()){
+        if(view.__isFinishing()){
+            placeListRequest?.dispose()
+            //todo HERE GOES THE RESETING OF VALUES
+
+            super.__destroy()
             //Log.i("DEBUG", "App will Terminate ");
         }else{
-            //Log.i("DEBUG", "Orientation changed");
             isFromRotation = true
+            //Log.i("DEBUG", "Orientation changed");
         }
     }
 
