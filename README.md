@@ -10,3 +10,4 @@
  * Android CI (part 2) - https://tips.seebrock3r.me/set-up-a-ci-for-modern-android-apps-with-circleci-905f8ab5ddce
  * Android MVP - https://medium.com/@faruktoptas/android-app-from-scratch-part-1-model-view-presenter-b5f629f2d9a1
  * Java Generics - https://www.youtube.com/watch?v=9tHLV0u87G4
+ * centralize dependency versions  - https://gist.github.com/gabrielemariotti/ad6672902464ee2392d0
