@@ -1,4 +1,4 @@
-package com.hilfritz.android.barfinder.ui.search
+package com.hilfritz.android.barfinder.ui.search.view
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton

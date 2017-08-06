@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".barfinder.ui.search.SearchActivity"
+            android:name=".barfinder.ui.search.view.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

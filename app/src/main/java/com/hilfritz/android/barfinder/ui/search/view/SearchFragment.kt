@@ -1,6 +1,5 @@
-package com.hilfritz.android.barfinder.ui.search
+package com.hilfritz.android.barfinder.ui.search.view
 
-import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,6 +10,7 @@ import com.hilfritz.android.BaseFragment
 
 import com.hilfritz.android.R
 import com.hilfritz.android.api.pojo.PlaceItem
+import com.hilfritz.android.barfinder.ui.search.SearchViewInterface
 import com.hilfritz.android.ui.placelist.helper.PlaceListAdapter
 import com.hilfritz.android.ui.placelist.interfaces.PlacesPresenterInterface
 import java.util.ArrayList

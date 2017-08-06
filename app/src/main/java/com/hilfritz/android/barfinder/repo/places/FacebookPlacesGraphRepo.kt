@@ -5,7 +5,7 @@ import com.hilfritz.android.barfinder.repo.places.pojo.PlaceBean
 /**
  * Created by home on 7/1/2017.
  */
-class PlacesRepository :PlacesRepo{
+class FacebookPlacesGraphRepo :PlacesRepo{
 
     override fun init() {
 
